@@ -1,0 +1,25 @@
+{
+  "_comment": "Registered policies per domain. 'mask' lists the attribute fields a policy constrains. The policy-mask target in the AOV test is this field set.",
+  "E-health": {
+    "P_GENERAL_READ":      {"mask": ["role"]},
+    "P_LAB_RESULT":        {"mask": ["role", "unit"]},
+    "P_MED_ADMIN":         {"mask": ["role", "cert"]},
+    "P_DISCHARGE_SUMMARY": {"mask": ["role", "unit"]},
+    "P_ICU_OVERRIDE":      {"mask": ["role", "unit", "cert"]},
+    "P_EMERGENCY_ACCESS":  {"mask": ["role", "shift"]}
+  },
+  "OSN-Facebook": {
+    "M_LABEL":       {"mask": ["tier"]},
+    "M_REMOVE_SPAM": {"mask": ["tier"]},
+    "M_RESTRICT":    {"mask": ["tier", "region"]},
+    "M_SUSPEND":     {"mask": ["tier", "region"]},
+    "M_ESCALATE":    {"mask": ["tier", "region", "cert"]}
+  },
+  "OSN-Twitter": {
+    "M_LABEL":       {"mask": ["tier"]},
+    "M_REMOVE_SPAM": {"mask": ["tier"]},
+    "M_RESTRICT":    {"mask": ["tier", "region"]},
+    "M_SUSPEND":     {"mask": ["tier", "region"]},
+    "M_ESCALATE":    {"mask": ["tier", "region", "cert"]}
+  }
+}
