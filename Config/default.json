@@ -1,0 +1,152 @@
+{
+  "params": {
+    "seed": 7,
+    "tau": 0.1,
+    "Hstar": 3,
+    "d0": 2,
+    "k": 1,
+    "cover_frac_max": 0.5,
+    "calib_runs": 1000,
+    "builder_runs": 500,
+    "churn_runs": 300,
+    "churn_levels": [
+      0.0,
+      0.2,
+      0.4
+    ],
+    "scaling_ns": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "scaling_seeds": 5,
+    "scaling_sigs_per_n": 4,
+    "scaling_support": 8,
+    "scaling_synth_runs": 40,
+    "sens_ns": [
+      16,
+      24,
+      32,
+      48
+    ],
+    "sens_d0": [
+      0,
+      2,
+      3
+    ],
+    "sens_runs": 500,
+    "plan_calibration_sigs": 60,
+    "plan_percentile": 99,
+    "aov_events": 1500,
+    "aov_seeds": 5,
+    "shape_churns": [
+      0.0,
+      0.25,
+      0.5,
+      0.7
+    ],
+    "shape_runs": 50,
+    "delta_theta_ms": 0.5,
+    "fresh_per_epoch": 16,
+    "fresh_pool": 30,
+    "link_pairs": 1000,
+    "link_seeds": 5,
+    "open_request_rate": 0.1,
+    "tamper_rate": 0.05,
+    "cost_runs": 50,
+    "search_sims": 200,
+    "theta_margin": 1.5
+  },
+  "hardcase": {
+    "tau": 0.05,
+    "Hstar": 3,
+    "d0": 3
+  },
+  "ehealth_domain": "E-health",
+  "order": {
+    "calib": [
+      "E-health",
+      "OSN-Facebook",
+      "OSN-Twitter"
+    ],
+    "aov": [
+      "E-health",
+      "OSN-Twitter",
+      "OSN-Facebook"
+    ]
+  },
+  "domains": [
+    {
+      "name": "E-health",
+      "label": "E-health ($G_t$)",
+      "edges": "data/prime_ring_ehealth_staff_graph_edges.csv",
+      "src_col": "src_staff_id",
+      "dst_col": "dst_staff_id",
+      "epoch_col": "epoch_t",
+      "log": "data/prime_ring_ehealth_access_log.csv",
+      "log_id_col": "staff_id",
+      "log_attr_cols": [
+        "staff_role",
+        "staff_shift"
+      ],
+      "log_size_proxy_cols": [
+        "attr_bucket"
+      ],
+      "log_policy_col": "policy_handle",
+      "log_target_attr_col": "attr_bucket",
+      "log_resource_col": "ehr_item"
+    },
+    {
+      "name": "OSN-Facebook",
+      "label": "OSN-Facebook",
+      "edges": "data/osn_facebook_edges.csv",
+      "src_col": "src",
+      "dst_col": "dst",
+      "keep_lcc": true,
+      "attrs": "data/osn_facebook_attrs.csv"
+    },
+    {
+      "name": "OSN-Twitter",
+      "label": "OSN-Twitter",
+      "edges": "data/osn_twitter_edges.csv",
+      "src_col": "src",
+      "dst_col": "dst",
+      "keep_lcc": true,
+      "attrs": "data/osn_twitter_attrs.csv"
+    }
+  ],
+  "logs": {
+    "E-health": {
+      "path": "data/prime_ring_ehealth_access_log.csv",
+      "id": "staff_id",
+      "epoch": "epoch_t",
+      "status": "status_id",
+      "plan": "plan_id",
+      "policy": "policy_handle",
+      "attr": "attr_bucket",
+      "event": "event_id"
+    },
+    "OSN-Facebook": {
+      "path": "data/osn_facebook_log.csv",
+      "id": "user_id",
+      "epoch": "epoch_t",
+      "status": "status_id",
+      "plan": "plan_id",
+      "policy": "policy_handle",
+      "attr": "attr_value",
+      "event": "event_id"
+    },
+    "OSN-Twitter": {
+      "path": "data/osn_twitter_log.csv",
+      "id": "user_id",
+      "epoch": "epoch_t",
+      "status": "status_id",
+      "plan": "plan_id",
+      "policy": "policy_handle",
+      "attr": "attr_value",
+      "event": "event_id"
+    }
+  },
+  "policy_registry": "data/policy_registry.json"
+}
