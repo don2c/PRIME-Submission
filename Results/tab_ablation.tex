@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Ablations on E-health, one component removed per row. $^{\dagger}$Classifier on unpadded length.}
+\label{tab:ablation}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+Variant & Policy rec. & Attr.\ rec. & Bayes success & Bucket rec. & Released above $\tau$ (\%) & Release rate (\%)\\
+\midrule
+Full PRIME-Ring & 0.446 & 0.018 & 0.182 & 0.293 & 0.0 & 0.0\\
+No shape & 0.832$^{\dagger}$ & 0.046$^{\dagger}$ & 0.182 & 0.293 & 0.0 & 0.0\\
+No distance ($d_0=0$) & 0.446 & 0.018 & 0.159 & 0.309 & 0.0 & 0.0\\
+No certificate & 0.446 & 0.018 & 0.182 & 0.293 & 100.0 & 100.0\\
+No support control & 0.446 & 0.018 & 0.104 & 0.288 & 0.0 & 42.8\\
+Signer not counted & 0.446 & 0.018 & 0.436 & 1.000 & 0.0 & 0.0\\
+\bottomrule
+\end{tabular}}
+\end{table}

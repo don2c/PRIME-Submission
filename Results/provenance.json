@@ -1,0 +1,1129 @@
+{
+ "config": {
+  "params": {
+   "seed": 7,
+   "tau": 0.1,
+   "Hstar": 3,
+   "d0": 2,
+   "k": 1,
+   "cover_frac_max": 0.5,
+   "calib_runs": 1000,
+   "builder_runs": 500,
+   "churn_runs": 300,
+   "churn_levels": [
+    0.0,
+    0.2,
+    0.4
+   ],
+   "scaling_ns": [
+    8,
+    16,
+    32,
+    64
+   ],
+   "scaling_seeds": 5,
+   "scaling_sigs_per_n": 4,
+   "scaling_support": 8,
+   "scaling_synth_runs": 40,
+   "sens_ns": [
+    16,
+    24,
+    32,
+    48
+   ],
+   "sens_d0": [
+    0,
+    2,
+    3
+   ],
+   "sens_runs": 500,
+   "plan_calibration_sigs": 60,
+   "plan_percentile": 99,
+   "aov_events": 1500,
+   "aov_seeds": 5,
+   "shape_churns": [
+    0.0,
+    0.25,
+    0.5,
+    0.7
+   ],
+   "shape_runs": 50,
+   "delta_theta_ms": 0.5,
+   "fresh_per_epoch": 16,
+   "fresh_pool": 30,
+   "link_pairs": 1000,
+   "link_seeds": 5,
+   "open_request_rate": 0.1,
+   "tamper_rate": 0.05,
+   "cost_runs": 50,
+   "search_sims": 200,
+   "theta_margin": 1.5
+  },
+  "hardcase": {
+   "tau": 0.05,
+   "Hstar": 3,
+   "d0": 3
+  },
+  "ehealth_domain": "E-health",
+  "order": {
+   "calib": [
+    "E-health",
+    "OSN-Facebook",
+    "OSN-Twitter"
+   ],
+   "aov": [
+    "E-health",
+    "OSN-Twitter",
+    "OSN-Facebook"
+   ]
+  },
+  "domains": [
+   {
+    "name": "E-health",
+    "label": "E-health ($G_t$)",
+    "edges": "data/prime_ring_ehealth_staff_graph_edges.csv",
+    "src_col": "src_staff_id",
+    "dst_col": "dst_staff_id",
+    "epoch_col": "epoch_t",
+    "log": "data/prime_ring_ehealth_access_log.csv",
+    "log_id_col": "staff_id",
+    "log_attr_cols": [
+     "staff_role",
+     "staff_shift"
+    ],
+    "log_size_proxy_cols": [
+     "attr_bucket"
+    ],
+    "log_policy_col": "policy_handle",
+    "log_target_attr_col": "attr_bucket",
+    "log_resource_col": "ehr_item"
+   },
+   {
+    "name": "OSN-Facebook",
+    "label": "OSN-Facebook",
+    "edges": "data/osn_facebook_edges.csv",
+    "src_col": "src",
+    "dst_col": "dst",
+    "keep_lcc": true,
+    "attrs": "data/osn_facebook_attrs.csv"
+   },
+   {
+    "name": "OSN-Twitter",
+    "label": "OSN-Twitter",
+    "edges": "data/osn_twitter_edges.csv",
+    "src_col": "src",
+    "dst_col": "dst",
+    "keep_lcc": true,
+    "attrs": "data/osn_twitter_attrs.csv"
+   }
+  ],
+  "logs": {
+   "E-health": {
+    "path": "data/prime_ring_ehealth_access_log.csv",
+    "id": "staff_id",
+    "epoch": "epoch_t",
+    "status": "status_id",
+    "plan": "plan_id",
+    "policy": "policy_handle",
+    "attr": "attr_bucket",
+    "event": "event_id"
+   },
+   "OSN-Facebook": {
+    "path": "data/osn_facebook_log.csv",
+    "id": "user_id",
+    "epoch": "epoch_t",
+    "status": "status_id",
+    "plan": "plan_id",
+    "policy": "policy_handle",
+    "attr": "attr_value",
+    "event": "event_id"
+   },
+   "OSN-Twitter": {
+    "path": "data/osn_twitter_log.csv",
+    "id": "user_id",
+    "epoch": "epoch_t",
+    "status": "status_id",
+    "plan": "plan_id",
+    "policy": "policy_handle",
+    "attr": "attr_value",
+    "event": "event_id"
+   }
+  },
+  "policy_registry": "data/policy_registry.json"
+ },
+ "python": "3.13.18",
+ "steps": {},
+ "runtime_s": 677.1,
+ "results": {
+  "datasets": [
+   {
+    "nodes": 220,
+    "edges": 298,
+    "deg": 2.7068181818181816,
+    "clust": 0.011222643097643098,
+    "label": "E-health ($G_t$)",
+    "buckets": 10
+   },
+   {
+    "nodes": 4039,
+    "edges": 88613,
+    "deg": 43.878682842287695,
+    "clust": 0.6449473204251244,
+    "label": "OSN-Facebook",
+    "buckets": 10
+   },
+   {
+    "nodes": 8000,
+    "edges": 88039,
+    "deg": 22.00975,
+    "clust": 0.432291557653634,
+    "label": "OSN-Twitter",
+    "buckets": 10
+   }
+  ],
+  "calib": {
+   "E-health": {
+    "runs": 1000,
+    "released_pct": 0.0,
+    "refused_pct": 100.0,
+    "empty_all": 0.0,
+    "pg_success": 0.18,
+    "pg_bucket": 0.297,
+    "rel_above_pct": 0.0,
+    "pg_n": 1000,
+    "pg_tau": 0.18057645063412694,
+    "pg_h2": 3.0,
+    "pg_S": 16.0,
+    "pg_cover": 0.0,
+    "pg_R": 16.0,
+    "pg_gap": 0.0,
+    "pg_ci_lo": 0.1574265005851786,
+    "pg_ci_hi": 0.20502271451011134
+   },
+   "OSN-Facebook": {
+    "runs": 1000,
+    "released_pct": 0.0,
+    "refused_pct": 100.0,
+    "empty_all": 0.0,
+    "pg_success": 0.234,
+    "pg_bucket": 0.4,
+    "rel_above_pct": 0.0,
+    "pg_n": 1000,
+    "pg_tau": 0.24012977885384898,
+    "pg_h2": 3.0,
+    "pg_S": 16.0,
+    "pg_cover": 0.0,
+    "pg_R": 16.0,
+    "pg_gap": 0.0,
+    "pg_ci_lo": 0.20880755932590186,
+    "pg_ci_hi": 0.26122835072205797
+   },
+   "OSN-Twitter": {
+    "runs": 1000,
+    "released_pct": 0.0,
+    "refused_pct": 100.0,
+    "empty_all": 0.0,
+    "pg_success": 0.198,
+    "pg_bucket": 0.383,
+    "rel_above_pct": 0.0,
+    "pg_n": 1000,
+    "pg_tau": 0.20767343812401226,
+    "pg_h2": 3.0,
+    "pg_S": 16.0,
+    "pg_cover": 0.0,
+    "pg_R": 16.0,
+    "pg_gap": 0.0,
+    "pg_ci_lo": 0.17447715201169275,
+    "pg_ci_hi": 0.2238342947344872
+   }
+  },
+  "sensitivity": [
+   {
+    "n": 16,
+    "d0": 0,
+    "tau": 0.14460784313725547,
+    "succ": 0.162,
+    "rel": 0.0
+   },
+   {
+    "n": 16,
+    "d0": 2,
+    "tau": 0.18128011496871874,
+    "succ": 0.178,
+    "rel": 0.0
+   },
+   {
+    "n": 16,
+    "d0": 3,
+    "tau": 0.292459072181275,
+    "succ": 0.286,
+    "rel": 0.0
+   },
+   {
+    "n": 24,
+    "d0": 0,
+    "tau": 0.09640522875817044,
+    "succ": 0.08,
+    "rel": 100.0
+   },
+   {
+    "n": 24,
+    "d0": 2,
+    "tau": 0.14715498657130244,
+    "succ": 0.158,
+    "rel": 3.2
+   },
+   {
+    "n": 24,
+    "d0": 3,
+    "tau": 0.32789707948508334,
+    "succ": 0.336,
+    "rel": 0.0
+   },
+   {
+    "n": 32,
+    "d0": 0,
+    "tau": 0.07230392156862761,
+    "succ": 0.068,
+    "rel": 100.0
+   },
+   {
+    "n": 32,
+    "d0": 2,
+    "tau": 0.14161059310752103,
+    "succ": 0.148,
+    "rel": 11.8
+   },
+   {
+    "n": 32,
+    "d0": 3,
+    "tau": 0.3886332497149964,
+    "succ": 0.384,
+    "rel": 0.0
+   },
+   {
+    "n": 48,
+    "d0": 0,
+    "tau": 0.04820261437908534,
+    "succ": 0.042,
+    "rel": 100.0
+   },
+   {
+    "n": 48,
+    "d0": 2,
+    "tau": 0.143289190899911,
+    "succ": 0.136,
+    "rel": 18.0
+   },
+   {
+    "n": 48,
+    "d0": 3,
+    "tau": 0.5168060745144094,
+    "succ": 0.482,
+    "rel": 0.0
+   }
+  ],
+  "builders": {
+   "E-health": {
+    "Uniform": {
+     "maxpost": 0.0625,
+     "success": 0.046,
+     "bucket": 0.38,
+     "passed": 100.0,
+     "runs": 500
+    },
+    "Neighbour": {
+     "maxpost": 0.835645359343745,
+     "success": 0.84,
+     "bucket": 0.962,
+     "passed": 0.0,
+     "runs": 500
+    },
+    "Same-bucket": {
+     "maxpost": 0.06753012820512819,
+     "success": 0.06,
+     "bucket": 1.0,
+     "passed": 100.0,
+     "runs": 500
+    },
+    "PRIME": {
+     "maxpost": 0.1819622846915467,
+     "success": 0.176,
+     "bucket": 0.288,
+     "passed": 0.0,
+     "runs": 500
+    }
+   },
+   "OSN-Facebook": {
+    "Uniform": {
+     "maxpost": 0.0625,
+     "success": 0.046,
+     "bucket": 0.406,
+     "passed": 100.0,
+     "runs": 500
+    },
+    "Neighbour": {
+     "maxpost": 0.93467608243204,
+     "success": 0.93,
+     "bucket": 0.946,
+     "passed": 0.0,
+     "runs": 500
+    },
+    "Same-bucket": {
+     "maxpost": 0.0625,
+     "success": 0.064,
+     "bucket": 1.0,
+     "passed": 100.0,
+     "runs": 500
+    },
+    "PRIME": {
+     "maxpost": 0.24255500614299358,
+     "success": 0.216,
+     "bucket": 0.352,
+     "passed": 0.0,
+     "runs": 500
+    }
+   },
+   "OSN-Twitter": {
+    "Uniform": {
+     "maxpost": 0.0625,
+     "success": 0.052,
+     "bucket": 0.426,
+     "passed": 100.0,
+     "runs": 500
+    },
+    "Neighbour": {
+     "maxpost": 0.9993519559613723,
+     "success": 1.0,
+     "bucket": 1.0,
+     "passed": 0.0,
+     "runs": 500
+    },
+    "Same-bucket": {
+     "maxpost": 0.0625,
+     "success": 0.066,
+     "bucket": 1.0,
+     "passed": 100.0,
+     "runs": 500
+    },
+    "PRIME": {
+     "maxpost": 0.20714599588843993,
+     "success": 0.198,
+     "bucket": 0.38,
+     "passed": 0.0,
+     "runs": 500
+    }
+   }
+  },
+  "churn": [
+   {
+    "setting": "standard",
+    "domain": "E-health",
+    "churn": 0.0,
+    "tau": 0.181728263941089,
+    "h2": 3.0,
+    "n": 16.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "standard",
+    "domain": "E-health",
+    "churn": 0.2,
+    "tau": 0.1814342552889786,
+    "h2": 3.0,
+    "n": 16.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "standard",
+    "domain": "E-health",
+    "churn": 0.4,
+    "tau": 0.1892765642389506,
+    "h2": 3.0,
+    "n": 16.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "standard",
+    "domain": "OSN-Facebook",
+    "churn": 0.0,
+    "tau": 0.24115774009217206,
+    "h2": 3.0,
+    "n": 16.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "standard",
+    "domain": "OSN-Facebook",
+    "churn": 0.2,
+    "tau": 0.23999927036009586,
+    "h2": 3.0,
+    "n": 16.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "standard",
+    "domain": "OSN-Facebook",
+    "churn": 0.4,
+    "tau": 0.2449119496294345,
+    "h2": 3.0,
+    "n": 16.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "standard",
+    "domain": "OSN-Twitter",
+    "churn": 0.0,
+    "tau": 0.20840752275255675,
+    "h2": 3.0,
+    "n": 16.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "standard",
+    "domain": "OSN-Twitter",
+    "churn": 0.2,
+    "tau": 0.20971621026933426,
+    "h2": 3.0,
+    "n": 16.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "standard",
+    "domain": "OSN-Twitter",
+    "churn": 0.4,
+    "tau": 0.21019694002876488,
+    "h2": 3.0,
+    "n": 16.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "hard",
+    "domain": "E-health",
+    "churn": 0.0,
+    "tau": 0.3249489531853227,
+    "h2": 3.0,
+    "n": 24.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "hard",
+    "domain": "E-health",
+    "churn": 0.2,
+    "tau": 0.3311909240042912,
+    "h2": 3.0,
+    "n": 24.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "hard",
+    "domain": "E-health",
+    "churn": 0.4,
+    "tau": 0.3791096535337857,
+    "h2": 3.0,
+    "n": 24.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "hard",
+    "domain": "OSN-Facebook",
+    "churn": 0.0,
+    "tau": 0.3994709115301781,
+    "h2": 3.0,
+    "n": 24.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "hard",
+    "domain": "OSN-Facebook",
+    "churn": 0.2,
+    "tau": 0.3930272737018777,
+    "h2": 3.0,
+    "n": 24.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "hard",
+    "domain": "OSN-Facebook",
+    "churn": 0.4,
+    "tau": 0.38947124778749515,
+    "h2": 3.0,
+    "n": 24.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "hard",
+    "domain": "OSN-Twitter",
+    "churn": 0.0,
+    "tau": 0.1932453871719434,
+    "h2": 3.0,
+    "n": 24.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "hard",
+    "domain": "OSN-Twitter",
+    "churn": 0.2,
+    "tau": 0.19544831701124152,
+    "h2": 3.0,
+    "n": 24.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   },
+   {
+    "setting": "hard",
+    "domain": "OSN-Twitter",
+    "churn": 0.4,
+    "tau": 0.19370762225865193,
+    "h2": 3.0,
+    "n": 24.0,
+    "cover": 0.0,
+    "empty": 0.0,
+    "released_pct": 0.0
+   }
+  ],
+  "scaling": [
+   {
+    "n": 8,
+    "sigma_kB": 144.828,
+    "pad_B": 46.105263157893205,
+    "synth_ms": 0.08221022999464367,
+    "cert_ms": 0.36167838000380925,
+    "sign_ms": 15.771008399991615,
+    "verify_ms": 4.559034449999899,
+    "reject_pct": 5.000000000000004
+   },
+   {
+    "n": 16,
+    "sigma_kB": 273.412,
+    "pad_B": 47.68421052629128,
+    "synth_ms": 0.09296395000149005,
+    "cert_ms": 0.7361190099999249,
+    "sign_ms": 26.361281300006567,
+    "verify_ms": 9.027081900001122,
+    "reject_pct": 5.000000000000004
+   },
+   {
+    "n": 32,
+    "sigma_kB": 530.641,
+    "pad_B": 113.47368421056308,
+    "synth_ms": 0.09914316000219969,
+    "cert_ms": 1.466720284998928,
+    "sign_ms": 54.462689999985514,
+    "verify_ms": 18.66552110001294,
+    "reject_pct": 5.000000000000004
+   },
+   {
+    "n": 64,
+    "sigma_kB": 1045.039,
+    "pad_B": 153.15789473685436,
+    "synth_ms": 0.11197645500146791,
+    "cert_ms": 2.983221344995286,
+    "sign_ms": 113.78556484999649,
+    "verify_ms": 39.853970200022104,
+    "reject_pct": 5.000000000000004
+   }
+  ],
+  "aov": {
+   "E-health": {
+    "Policy body": {
+     "acc": 0.445868850970906,
+     "attacker": "logreg",
+     "chance": 0.45516609850047507,
+     "adv": -0.009297247529569064,
+     "ring_acc": 0.3284417884911264,
+     "control": 1.0,
+     "per_attacker": {
+      "logreg": 0.445868850970906,
+      "gbt": 0.4283311920245133,
+      "mlp": 0.39225712062342905
+     }
+    },
+    "Attribute value": {
+     "acc": 0.01760196713049679,
+     "attacker": "logreg",
+     "chance": 0.020686209879096494,
+     "adv": -0.003084242748599704,
+     "ring_acc": 0.07149939705674335,
+     "control": 0.8148786490192181,
+     "per_attacker": {
+      "logreg": 0.01760196713049679,
+      "gbt": 0.016148551591438205,
+      "mlp": 0.013393757299850035
+     }
+    },
+    "Policy mask": {
+     "acc": 0.43949520619067145,
+     "attacker": "logreg",
+     "chance": 0.45516609850047507,
+     "adv": -0.01567089230980362,
+     "ring_acc": 0.33632399878884367,
+     "control": 1.0,
+     "per_attacker": {
+      "logreg": 0.43949520619067145,
+      "gbt": 0.42674288168620295,
+      "mlp": 0.37955501229624267
+     }
+    }
+   },
+   "OSN-Twitter": {
+    "Policy body": {
+     "acc": 0.4442198796910878,
+     "attacker": "logreg",
+     "chance": 0.4534525852197052,
+     "adv": -0.009232705528617435,
+     "ring_acc": 0.41632532444115783,
+     "control": 1.0,
+     "per_attacker": {
+      "logreg": 0.4442198796910878,
+      "gbt": 0.4113700542855785,
+      "mlp": 0.37928914679046544
+     }
+    },
+    "Attribute value": {
+     "acc": 0.021839308981092192,
+     "attacker": "logreg",
+     "chance": 0.02700565184346035,
+     "adv": -0.005166342862368157,
+     "ring_acc": 0.02465796181411743,
+     "control": 0.7804678652540051,
+     "per_attacker": {
+      "logreg": 0.021839308981092192,
+      "gbt": 0.015774322345900767,
+      "mlp": 0.014116181059947783
+     }
+    },
+    "Policy mask": {
+     "acc": 0.7008546606568032,
+     "attacker": "logreg",
+     "chance": 0.7008546606568032,
+     "adv": 0.0,
+     "ring_acc": 0.6923820116920003,
+     "control": 1.0,
+     "per_attacker": {
+      "logreg": 0.7008546606568032,
+      "gbt": 0.6964420027533472,
+      "mlp": 0.6384918616342963
+     }
+    }
+   },
+   "OSN-Facebook": {
+    "Policy body": {
+     "acc": 0.40768791770625706,
+     "attacker": "logreg",
+     "chance": 0.40724218949621127,
+     "adv": 0.00044572821004579266,
+     "ring_acc": 0.3490632361818702,
+     "control": 1.0,
+     "per_attacker": {
+      "logreg": 0.40768791770625706,
+      "gbt": 0.3743048094852165,
+      "mlp": 0.32353753221612014
+     }
+    },
+    "Attribute value": {
+     "acc": 0.017835842128308722,
+     "attacker": "gbt",
+     "chance": 0.016626011860809035,
+     "adv": 0.0012098302674996876,
+     "ring_acc": 0.023111185046192056,
+     "control": 0.7782365621547462,
+     "per_attacker": {
+      "logreg": 0.01190683073729267,
+      "gbt": 0.017835842128308722,
+      "mlp": 0.013599078018098506
+     }
+    },
+    "Policy mask": {
+     "acc": 0.5754779317231334,
+     "attacker": "logreg",
+     "chance": 0.5749333248290106,
+     "adv": 0.0005446068941228344,
+     "ring_acc": 0.5351684346672281,
+     "control": 1.0,
+     "per_attacker": {
+      "logreg": 0.5754779317231334,
+      "gbt": 0.5406601625424802,
+      "mlp": 0.5125052038119721
+     }
+    }
+   }
+  },
+  "shape": [
+   {
+    "domain": "E-health",
+    "churn": 0.0,
+    "runs": 50,
+    "reject_pct": 4.0,
+    "pool_pct": 0.0,
+    "length_pct": 4.0,
+    "time_pct": 0.0,
+    "pad_B": 79.70833333333333,
+    "dtheta_ms": 0.00018585408885959018
+   },
+   {
+    "domain": "E-health",
+    "churn": 0.25,
+    "runs": 50,
+    "reject_pct": 0.0,
+    "pool_pct": 0.0,
+    "length_pct": 0.0,
+    "time_pct": 0.0,
+    "pad_B": 83.24,
+    "dtheta_ms": 0.0004075599213138048
+   },
+   {
+    "domain": "E-health",
+    "churn": 0.5,
+    "runs": 50,
+    "reject_pct": 2.0,
+    "pool_pct": 0.0,
+    "length_pct": 2.0,
+    "time_pct": 0.0,
+    "pad_B": 91.04081632653062,
+    "dtheta_ms": 0.00019846931086342048
+   },
+   {
+    "domain": "E-health",
+    "churn": 0.7,
+    "runs": 50,
+    "reject_pct": 0.0,
+    "pool_pct": 0.0,
+    "length_pct": 0.0,
+    "time_pct": 0.0,
+    "pad_B": 86.42,
+    "dtheta_ms": 0.00018979993001266848
+   },
+   {
+    "domain": "OSN-Twitter",
+    "churn": 0.0,
+    "runs": 50,
+    "reject_pct": 4.0,
+    "pool_pct": 0.0,
+    "length_pct": 4.0,
+    "time_pct": 0.0,
+    "pad_B": 72.29166666666667,
+    "dtheta_ms": 0.004162249993555633
+   },
+   {
+    "domain": "OSN-Twitter",
+    "churn": 0.25,
+    "runs": 50,
+    "reject_pct": 0.0,
+    "pool_pct": 0.0,
+    "length_pct": 0.0,
+    "time_pct": 0.0,
+    "pad_B": 73.0,
+    "dtheta_ms": 0.0002792199870782497
+   },
+   {
+    "domain": "OSN-Twitter",
+    "churn": 0.5,
+    "runs": 50,
+    "reject_pct": 2.0,
+    "pool_pct": 0.0,
+    "length_pct": 2.0,
+    "time_pct": 0.0,
+    "pad_B": 71.26530612244898,
+    "dtheta_ms": 0.0008929285747993218
+   },
+   {
+    "domain": "OSN-Twitter",
+    "churn": 0.7,
+    "runs": 50,
+    "reject_pct": 0.0,
+    "pool_pct": 0.0,
+    "length_pct": 0.0,
+    "time_pct": 0.0,
+    "pad_B": 73.58,
+    "dtheta_ms": 0.0005674999852089968
+   },
+   {
+    "domain": "OSN-Facebook",
+    "churn": 0.0,
+    "runs": 50,
+    "reject_pct": 0.0,
+    "pool_pct": 0.0,
+    "length_pct": 0.0,
+    "time_pct": 0.0,
+    "pad_B": 53.56,
+    "dtheta_ms": 0.0002863000963770901
+   },
+   {
+    "domain": "OSN-Facebook",
+    "churn": 0.25,
+    "runs": 50,
+    "reject_pct": 8.0,
+    "pool_pct": 0.0,
+    "length_pct": 8.0,
+    "time_pct": 0.0,
+    "pad_B": 62.30434782608695,
+    "dtheta_ms": 0.00017417400376080363
+   },
+   {
+    "domain": "OSN-Facebook",
+    "churn": 0.5,
+    "runs": 50,
+    "reject_pct": 12.0,
+    "pool_pct": 0.0,
+    "length_pct": 12.0,
+    "time_pct": 0.0,
+    "pad_B": 46.52272727272727,
+    "dtheta_ms": 0.0001904773718954609
+   },
+   {
+    "domain": "OSN-Facebook",
+    "churn": 0.7,
+    "runs": 50,
+    "reject_pct": 8.0,
+    "pool_pct": 0.0,
+    "length_pct": 8.0,
+    "time_pct": 0.0,
+    "pad_B": 54.91304347826087,
+    "dtheta_ms": 0.00019941311442696883
+   }
+  ],
+  "freshness": {
+   "E-health": {
+    "epochs": 12,
+    "transcripts": 192,
+    "fresh": 1.0,
+    "replay_same": 0.0,
+    "replay_old": 0.0,
+    "stale_status": 0.0,
+    "forge": 0.0,
+    "link_crypto": 0.5132697769819894,
+    "link_ring": 0.648492968478773,
+    "link_chance": 0.5,
+    "pairs": 1000
+   },
+   "OSN-Twitter": {
+    "epochs": 12,
+    "transcripts": 192,
+    "fresh": 1.0,
+    "replay_same": 0.0,
+    "replay_old": 0.0,
+    "stale_status": 0.0,
+    "forge": 0.0,
+    "link_crypto": 0.4726660689063015,
+    "link_ring": 0.9770220996856602,
+    "link_chance": 0.5,
+    "pairs": 1000
+   },
+   "OSN-Facebook": {
+    "epochs": 12,
+    "transcripts": 192,
+    "fresh": 1.0,
+    "replay_same": 0.0,
+    "replay_old": 0.0,
+    "stale_status": 0.0,
+    "forge": 0.0,
+    "link_crypto": 0.5189220941045602,
+    "link_ring": 0.9455751035911624,
+    "link_chance": 0.5,
+    "pairs": 1000
+   }
+  },
+  "opening": {
+   "E-health": {
+    "transcripts": 45000,
+    "requests": 4582,
+    "opened": 4582,
+    "correct": 4582,
+    "judge_ok": 4582,
+    "unauth_opened": 0,
+    "tampered": 245,
+    "tampered_opened": 0,
+    "nonsigner_judged": 0,
+    "wrong_proof_judged": 0,
+    "logged_once": 4582,
+    "log_duplicates": 0,
+    "log_chain_ok": true
+   },
+   "OSN-Twitter": {
+    "transcripts": 50000,
+    "requests": 4925,
+    "opened": 4925,
+    "correct": 4925,
+    "judge_ok": 4925,
+    "unauth_opened": 0,
+    "tampered": 260,
+    "tampered_opened": 0,
+    "nonsigner_judged": 0,
+    "wrong_proof_judged": 0,
+    "logged_once": 4925,
+    "log_duplicates": 0,
+    "log_chain_ok": true
+   },
+   "OSN-Facebook": {
+    "transcripts": 5000,
+    "requests": 468,
+    "opened": 468,
+    "correct": 468,
+    "judge_ok": 468,
+    "unauth_opened": 0,
+    "tampered": 32,
+    "tampered_opened": 0,
+    "nonsigner_judged": 0,
+    "wrong_proof_judged": 0,
+    "logged_once": 468,
+    "log_duplicates": 0,
+    "log_chain_ok": true
+   }
+  },
+  "plans": {
+   "E-health": {
+    "n": 16,
+    "L": 273449,
+    "Theta": 0.02703813300007596
+   },
+   "OSN-Twitter": {
+    "n": 16,
+    "L": 273434,
+    "Theta": 0.03422980950000465
+   },
+   "OSN-Facebook": {
+    "n": 16,
+    "L": 273409,
+    "Theta": 0.020728252499907285
+   }
+  },
+  "transcripts": {
+   "E-health": {
+    "events": 45000,
+    "eligible": 41838,
+    "sampled": 1500,
+    "length_rejected": 9,
+    "mean_sign_s": 0.030629744460762973,
+    "mean_verify_s": 0.02704181837491765
+   },
+   "OSN-Twitter": {
+    "events": 50000,
+    "eligible": 47122,
+    "sampled": 1500,
+    "length_rejected": 28,
+    "mean_sign_s": 0.030600723155569717,
+    "mean_verify_s": 0.03423975926358998
+   },
+   "OSN-Facebook": {
+    "events": 5000,
+    "eligible": 4699,
+    "sampled": 1500,
+    "length_rejected": 131,
+    "mean_sign_s": 0.03185010963477162,
+    "mean_verify_s": 0.02073626563622854
+   }
+  },
+  "costs": {
+   "synth_s": 0.00010740556000882862,
+   "cert_s": 0.0008873129999915363,
+   "search_s": 0.02021324826000864,
+   "tau_as_ge_tau": 1.0,
+   "runs": 50,
+   "sign_s": 0.030629744460762973,
+   "verify_s": 0.02704181837491765,
+   "n": 16
+  },
+  "bbs": {
+   "bbs_policy": 1.0,
+   "bbs_attr": 0.020686209879096494,
+   "prime": {
+    "policy": 0.445868850970906,
+    "attr": 0.01760196713049679,
+    "tau": 0.18057645063412694,
+    "refusal": 100.0
+   }
+  },
+  "ablation": {
+   "Full PRIME-Ring": {
+    "policy": 0.445868850970906,
+    "attr": 0.01760196713049679,
+    "success": 0.182,
+    "bucket": 0.293,
+    "above": 0.0,
+    "release": 0.0
+   },
+   "No shape": {
+    "policy": 0.8317792726769264,
+    "attr": 0.046223066657782155,
+    "success": 0.182,
+    "bucket": 0.293,
+    "above": 0.0,
+    "release": 0.0,
+    "dagger": true
+   },
+   "No distance ($d_0=0$)": {
+    "policy": 0.445868850970906,
+    "attr": 0.01760196713049679,
+    "success": 0.159,
+    "bucket": 0.309,
+    "above": 0.0,
+    "release": 0.0
+   },
+   "No certificate": {
+    "policy": 0.445868850970906,
+    "attr": 0.01760196713049679,
+    "success": 0.182,
+    "bucket": 0.293,
+    "above": 100.0,
+    "release": 100.0
+   },
+   "No support control": {
+    "policy": 0.445868850970906,
+    "attr": 0.01760196713049679,
+    "success": 0.104,
+    "bucket": 0.288,
+    "above": 0.0,
+    "release": 42.8
+   },
+   "Signer not counted": {
+    "policy": 0.445868850970906,
+    "attr": 0.01760196713049679,
+    "success": 0.436,
+    "bucket": 1.0,
+    "above": 0.0,
+    "release": 0.0
+   }
+  },
+  "noshape": {
+   "policy": 0.8317792726769264,
+   "attr": 0.046223066657782155,
+   "chance_policy": 0.46439016633836633,
+   "chance_attr": 0.02368040488455788,
+   "how": "PROXY: distinct granted attribute tuples per policy handle"
+  }
+ }
+}

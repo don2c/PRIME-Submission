@@ -1,0 +1,24 @@
+\begin{table}[htbp]
+\centering
+\caption{Anonymous-credential baseline under the same attacker view.}
+\label{tab:bbs-baseline}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{lcc}
+\toprule
+Metric & BBS+ cred.~\cite{flamini2024selective,w3c2025bbs} & PRIME-Ring \\
+\midrule
+Policy recovery & 1.000$^{\dagger}$ & 0.446 \\
+Hidden-attribute recovery & 0.021$^{\ddagger}$ & 0.018 \\
+Signer inference & Uncertified & 0.181 \\
+Release refusal & No gate & 100\% \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+\begin{minipage}{0.95\columnwidth}
+\scriptsize
+$^{\dagger}$Disclosed policy claims are recoverable by selective disclosure. $^{\ddagger}$Equals the e-health chance level (Table~\ref{tab:prime_aov_hiding}).
+\end{minipage}
+\end{table}

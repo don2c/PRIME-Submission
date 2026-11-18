@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\centering
+\caption{Signer inference by ring builder (same pools, signers and $n=16$). Lower is better.}
+\label{tab:builders}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llrrr}
+\toprule
+Domain & Builder & Mean max posterior & Bayes success & Bucket recovery\\
+\midrule
+E-health & Uniform & 0.062 & 0.046 & 0.380\\
+E-health & Neighbour & 0.836 & 0.840 & 0.962\\
+E-health & Same-bucket & 0.068 & 0.060 & 1.000\\
+E-health & PRIME & 0.182 & 0.176 & 0.288\\
+\midrule
+OSN-Facebook & Uniform & 0.062 & 0.046 & 0.406\\
+OSN-Facebook & Neighbour & 0.935 & 0.930 & 0.946\\
+OSN-Facebook & Same-bucket & 0.062 & 0.064 & 1.000\\
+OSN-Facebook & PRIME & 0.243 & 0.216 & 0.352\\
+\midrule
+OSN-Twitter & Uniform & 0.062 & 0.052 & 0.426\\
+OSN-Twitter & Neighbour & 0.999 & 1.000 & 1.000\\
+OSN-Twitter & Same-bucket & 0.062 & 0.066 & 1.000\\
+OSN-Twitter & PRIME & 0.207 & 0.198 & 0.380\\
+\bottomrule
+\end{tabular}}
+\end{table}

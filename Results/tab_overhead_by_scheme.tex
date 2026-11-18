@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\centering
+\caption{Mean wall-clock time per transcript (E-health, $n=16$). Verify includes plan padding to $\Theta$.}
+\label{tab:overhead_by_scheme}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+ & \multicolumn{2}{c}{{Native protocol}} & \multicolumn{3}{c}{{PRIME-Ring stages}}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-6}
+Scheme & Sign (ms) & Verify (ms) & Synthesis (ms) & Cert.\ (ms) & Search (ms)\\
+\midrule
+PRIME-Ring & 30.6 & 27.0 & 0.11 & 0.89 & 20.2\\
+\bottomrule
+\end{tabular}}
+\end{table}
